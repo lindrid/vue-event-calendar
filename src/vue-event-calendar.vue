@@ -64,7 +64,7 @@ export default {
         return {
           options: {
             locale: 'en', //zh
-            color: '#008000',
+            color: 'red',
             colorRed: '#FF6347'
           },
           params: {
