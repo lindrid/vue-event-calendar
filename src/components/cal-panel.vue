@@ -26,11 +26,11 @@
           >
           <p class="date-num"
             @click="handleChangeCurday(date)"
-            :style="{color: date.title != undefined ? ((date.date == selectedDay) ? '#fff' : customColor) : 'inherit'}">
+            :style="{color: date.title != undefined ? ((date.date == selectedDay) ? '#fff' : customColor(date.redColor)) : 'inherit'}">
             {{date.status ? date.date.split('/')[2] : '&nbsp;'}}</p>
-          <span v-if="date.status ? (today == date.date) : false" class="is-today" :style="{backgroundColor: customColor }" ></span>
+          <span v-if="date.status ? (today == date.date) : false" class="is-today" :style="{backgroundColor: customColor(date.redColor) }" ></span>
           <span v-if="date.status ? (date.title != undefined) : false" class="is-event"
-            :style="{borderColor: customColor, backgroundColor: (date.date == selectedDay) ? customColor : 'inherit'}"></span>
+            :style="{borderColor: customColor(date.redColor), backgroundColor: (date.date == selectedDay) ? customColor(date.redColor) : 'inherit'}"></span>
         </div>
       </div>
     </div>
@@ -96,7 +96,10 @@ export default {
             if (isEqualDateStr(event.date, tempItem.date)) {
               tempItem.title = event.title
               tempItem.desc = event.desc || ''
-              if (event.customClass) tempItem.customClass.push(event.customClass)
+              tempItem.redColor = event.redColor
+              if (event.customClass) {
+                tempItem.customClass.push(event.customClass)
+              }
             }
           })
           tempArr.push(tempItem)
@@ -111,7 +114,10 @@ export default {
       let tempDate = Date.parse(new Date(`${this.calendar.params.curYear}/${this.calendar.params.curMonth+1}/01`))
       return dateTimeFormatter(tempDate, this.i18n[this.calendar.options.locale].format)
     },
-    customColor () {
+    customColor (redColor) {
+      if (redColor) {
+        return 'red';
+      }
       return this.calendar.options.color
     }
   },
