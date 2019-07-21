@@ -64,7 +64,8 @@ export default {
         return {
           options: {
             locale: 'en', //zh
-            color: ' #f29543'
+            color: '#008000',
+            colorRed: '#FF6347'
           },
           params: {
               curYear: dateObj.getFullYear(),
