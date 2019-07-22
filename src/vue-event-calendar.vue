@@ -11,7 +11,7 @@
       :title="title"
       :dayEvents="selectedDayEvents"
       :locale="calendarOptions.options.locale"
-      :color="calendarOptions.options.color">
+      :color="red">
       <slot :showEvents="selectedDayEvents.events"></slot>
     </cal-events>
   </div>
